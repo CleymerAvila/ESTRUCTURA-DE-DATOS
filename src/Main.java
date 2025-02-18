@@ -2,20 +2,20 @@
 public class Main {
     public static void main(String[] args) {
 
-        Array array = new Array(10);
+        Array array = new Array(6);
 
-        array.insertLast(20);
-        array.insertLast(10);
-        array.insertLast(0);
-        array.insertLast(-10);
-        array.insertLast(-20);
-        array.insertLast(-30);
-        array.insertLast(-40);
-        array.insertLast(-50);
-        array.insertLast(-60);
-        array.insertLast(-80);
-        array.insertLast(-90);
+        array.insertLast(1);
+        array.insertLast(2);
+        array.insertLast(3);
+        array.insertAtPosition(5, 1);
+        array.insertBeforePosition(0, 2);
+        array.insertAfterPosition(9, 1);
 
         array.scrollData();
+
+        /**
+         * Realizar un menu para insertar y eliminar de cada metodo
+         * y la lectura de valores por medio de consolas
+         */
     }
 }
