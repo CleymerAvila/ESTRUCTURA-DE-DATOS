@@ -110,6 +110,9 @@ public class Array {
 
     // Eliminar en una posicion
     public void deleteAtPosition(int position){
+        if (position < 0){
+            System.out.println("No es posible eliminar en la posicion especificada");
+        }
         if (position > count){
             System.out.println("No existe la posicion indicada");
             return;
@@ -128,7 +131,26 @@ public class Array {
         }
     }
 
-    public void sortDataByASC(boolean byAscOrder){
+    public void deleteFromData(int data){
+        int pos = searchData(data);
+        if (pos!=-1){
+            deleteAtPosition(data);
+        } else {
+            System.out.println("El dato no existe dentro del vector");
+        }
+    }
+
+    public void deleteBefore(int position){
+        position--;
+        deleteAtPosition(position);
+    }
+
+    public void deleteAfter(int position){
+        position++;
+        deleteAtPosition(position);
+    }
+
+    public void sortByTrades(boolean byAscOrder){
         // 1. Creamos unas variables para contar los intercambios y para verificar que este ordenado
         int trades = 0;
         boolean sorter=false;
@@ -186,6 +208,36 @@ public class Array {
 //            }
 //        }
     }
+
+    public void sortBySelection(boolean byAscOrder){
+        int tempVariable;
+        int theShorter = 0;
+        for (int i=0; i < (count - 1); i++){
+            for (int j=0; j < (count - 1); j++){
+                if (A[j]<A[j+1]){
+                    tempVariable = A[]
+                    theShorter = A[j];
+                }
+            }
+            A[i]=theShorter;
+        }
+    }
+
+    public int searchData(int data){
+        int position = -1;
+        if (count == size){
+            System.out.println("Vector lleno");
+        } else {
+            for(int i=0; i < count; i++){
+                if (A[i]==data){
+                    position=i;
+                    break;
+                }
+            }
+        }
+        return position;
+    }
+
 
     public void printData(){
         System.out.println("Impresión Elementos\n\n");
