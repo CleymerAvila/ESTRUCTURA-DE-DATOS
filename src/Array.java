@@ -63,7 +63,7 @@ public class Array {
                     }
                     A[position] = data;
                     count++;
-                    System.out.println("Numero "+ data+ " insertado en la posicion " + position + "con exito!");
+                    System.out.println("Numero "+ data+ " insertado en la posicion " + position + " con exito!");
                 }
             } else {
                 System.out.println("Vector lleno - desbordamiento");
@@ -128,10 +128,71 @@ public class Array {
         }
     }
 
-    public void printData(){
-        System.out.println("Impresión Elementos");
-        for(int i=0; i<count; i++){
-            System.out.println("[ "+ A[i]+" ]");
+    public void sortDataByASC(boolean byAscOrder){
+        // 1. Creamos unas variables para contar los intercambios y para verificar que este ordenado
+        int trades = 0;
+        boolean sorter=false;
+        if (byAscOrder){
+            // Ordenar datos de menor a mayor
+            while (!sorter){
+                for (int currentElement = 0; currentElement < (count-1); currentElement++){
+                    int followingElement = currentElement + 1;
+                    if (A[currentElement] > A[followingElement]){
+                        //  Realizamos un intercambio
+                        int temporalVariable = A[currentElement];
+                        A[currentElement] = A[followingElement];
+                        A[followingElement] = temporalVariable;
+                        // Aumentamos la cantidad de intercambios
+                        trades++;
+                    }
+                }
+
+                if (trades == 0){
+                    sorter = true;
+                }
+
+                trades = 0;
+            }
+        } else {
+            // Ordenar de mayor a menor
+            while (!sorter){
+                for (int currentElement = 0; currentElement < (count-1); currentElement++){
+                    int followingElement = currentElement + 1;
+                    if (A[currentElement] < A[followingElement]){
+                        //  Realizamos un intercambio
+                        int temporalVariable = A[currentElement];
+                        A[currentElement] = A[followingElement];
+                        A[followingElement] = temporalVariable;
+                        // Aumentamos la cantidad de intercambios
+                        trades++;
+                    }
+                }
+
+                if (trades == 0){
+                    sorter = true;
+                }
+
+                trades = 0;
+            }
         }
+//        for(int i=0; i < count - 1; i++){
+//            for (int currentElement=0; j < (count -1); currentElement++){
+//                int followingElement = currentElement + 1;
+//                if (A[currentElement]>A[followingElement]){
+//                    temporalVariable = A[currentElement];
+//                    A[currentElement]=A[followingElement];
+//                    A[followingElement]=temporalVariable;
+//                }
+//            }
+//        }
+    }
+
+    public void printData(){
+        System.out.println("Impresión Elementos\n\n");
+
+        for(int i=0; i<count; i++){
+            System.out.print("[ "+ A[i]+" ]");
+        }
+        System.out.println("\n\n");
     }
 }

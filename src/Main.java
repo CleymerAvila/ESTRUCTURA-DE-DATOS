@@ -67,12 +67,25 @@ public class Main {
                     pos = sc.nextInt();
                     array.deleteAtPosition(pos);
                     array.printData();
+                    break;
                 case 9:
+                    System.out.println("Ordenar vectores en orden Ascendente");
+                    array.sortDataByASC(true);
+                    array.printData();
+                    break;
+                case 10:
+                    System.out.println("Ordenar vectores en orden Descendente");
+                    array.sortDataByASC(false);
+                    array.printData();
+                    break;
+                case 11:
                     System.out.println("Gracias por usar nuestros servicios");
+                    break;
                 default:
                     System.out.println("Opción no valida!");
+                    break;
             }
-        } while (option != 9);
+        } while (option != 11);
 
     }
 
@@ -86,7 +99,9 @@ public class Main {
         System.out.println("6. Eliminar al principio");
         System.out.println("7. Eliminar al final");
         System.out.println("8. Eliminar en una posicion");
-        System.out.println("9. Salir de la aplicacion");
+        System.out.println("9. Ordenar datos por orden Ascendente");
+        System.out.println("10. Ordenar datos por orden Descendente");
+        System.out.println("11. Salir de la aplicacion");
         System.out.println("--------- - -- - -  - - -  -------");
     }
 }
