@@ -45,7 +45,7 @@ public class Array {
             return;
         }
         // Validacion position mayor que cantidad elemento
-        if (position >= count){
+        if (position > count){
             System.out.println("Error no esta permitido el ingreso en esta posicion");
             return;
         }

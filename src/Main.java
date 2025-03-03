@@ -126,8 +126,10 @@ public class Main {
                     System.out.print("Ingrese el nuevo valor: ");
                     int newValue1 = sc.nextInt();
                     array.modifyByPosition(pos, newValue1);
+                    break;
                 case 3:
                     System.out.println("Saliendo al menu principal");
+                    break;
                 default:
                     System.out.println("Valor ingresado incorrecto.");
                     break;
@@ -169,6 +171,7 @@ public class Main {
                     } else {
                     System.out.println("Elemento no encontrado en el arreglo.");
                     }
+                    break;
                 case 4:
                     System.out.println("\nRegresando al menu principal");
                     break;
