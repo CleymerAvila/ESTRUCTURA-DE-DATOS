@@ -297,7 +297,7 @@ public class Array {
                     positions.add(i);
                 }
         }
-        if (positions.isEmpty()) {
+        if (positions.size() == 1) {
             System.out.println("No se encontraron valores duplicados");
         } else {
             System.out.println(duplicatePositions);
