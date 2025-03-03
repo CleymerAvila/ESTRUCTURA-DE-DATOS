@@ -215,13 +215,158 @@ public class Main {
         System.out.println("------------------------------------");
     }
 
-    static public void  sortingMenu(){
+    public static void  sortingMenu(){
         System.out.println("\n\n------ MENU ORDENACION DATOS ARRAY -----");
         System.out.println("1. Metodo Burbuja \n(intercambio directo)");
-        System.out.println("2.  Metodo por seleccion");
+        System.out.println("2. Metodo por seleccion");
         System.out.println("3. Metodo Insercion");
         System.out.println("4. Metodo ordenacion rapida- quicksort");
         System.out.println("5. Regresar a menu principal");
         System.out.println("----------------------------------------");
+    }
+
+    public static void insertionMethods(Array array, Scanner sc){
+        int number;
+        int pos;
+        int insertionOption;
+        do{
+            insertionMenu();
+            System.out.print("Selecciona una opcion: - ");
+            insertionOption = sc.nextInt();
+            switch (insertionOption){
+                case 1:
+                    System.out.print("Digite el numero a insertar: - ");
+                    number = sc.nextInt();
+                    array.insertAtFirst(number);
+                    array.printData();
+                    break;
+                case 2:
+                    System.out.print("Digite el numero a insertar: ");
+                    number = sc.nextInt();
+                    array.insertAtLast(number);
+                    array.printData();
+                    break;
+                case 3:
+                    System.out.print("Digite el numero a insertar: ");
+                    number = sc.nextInt();
+                    System.out.print("digite la posicion: ");
+                    pos = sc.nextInt();
+                    array.insertAtPosition(number, pos);
+                    array.printData();
+                    break;
+                case 4:
+                    System.out.print("Digite el numero a insertar: - ");
+                    number = sc.nextInt();
+                    System.out.print("digite la posicion: - ");
+                    pos = sc.nextInt();
+                    array.insertBeforePosition(number, pos);
+                    array.printData();
+                    break;
+                case 5:
+                    System.out.print("Digite el numero a insertar: - ");
+                    number = sc.nextInt();
+                    System.out.print("digite la posicion: - ");
+                    pos = sc.nextInt();
+                    array.insertAfterPosition(number, pos);
+                    array.printData();
+                    break;
+                case 6:
+                    System.out.println("\nRegresando al menu principal");
+                    break;
+                default:
+                    System.out.println("Opcion no valida!!");
+                    break;
+
+            }
+        } while (insertionOption != 6);
+    }
+
+    public static void eliminationMethods(Array array, Scanner sc){
+        int eliminationOption;
+        int pos;
+        int number;
+        do{
+            eliminationMenu();
+            System.out.print("Selecciona una opcion: - ");
+            eliminationOption = sc.nextInt();
+            switch (eliminationOption){
+                case 1:
+                    array.deleteAtFirst();
+                    array.printData();
+                    break;
+                case 2:
+                    array.deleteAtLast();
+                    array.printData();
+                    break;
+                case 3:
+                    System.out.print("Digite la posicion a eliminar: - ");
+                    pos = sc.nextInt();
+                    array.deleteAtPosition(pos);
+                    array.printData();
+                    break;
+                case 4:
+                    System.out.println("Eliminar antes de una posicion");
+                    System.out.print("Ingrese posicion: - ");
+                    pos = sc.nextInt();
+                    array.deleteBefore(pos);
+                    array.printData();
+                    break;
+                case 5:
+                    System.out.println("Eliminar despues de una posicion");
+                    System.out.println("Ingrese posicion: - ");
+                    pos = sc.nextInt();
+                    array.deleteAfter(pos);
+                    array.printData();
+                    break;
+                case 6:
+                    System.out.println("Eliminar por dato");
+                    System.out.print("Ingrese dato: - ");
+                    number = sc.nextInt();
+                    array.deleteFromData(number);
+                    array.printData();
+                    break;
+                case 7:
+                    System.out.println("\nRegresando al menu principal");
+                    break;
+                default:
+                    System.out.println("Opcion no valida!!");
+                    break;
+
+            }
+        } while (eliminationOption != 7);
+    }
+
+    public static void sortingMethods(Array array, Scanner sc){
+        int sortingOption;
+        do{
+            sortingMenu();
+            System.out.print("Selecciona una opcion: - ");
+            sortingOption = sc.nextInt();
+            switch (sortingOption){
+                case 1:
+                    array.sortByTrades(true);
+                    array.printData();
+                    break;
+                case 2:
+                    array.sortBySelection();
+                    array.printData();
+                    break;
+                case 3:
+                    array.sortByInsertion();
+                    array.printData();
+                    break;
+                case 4:
+                    array.quickSort(0, array.count-1);
+                    array.printData();
+                    break;
+                case 5:
+                    System.out.println("\nRegresa al menu principal\n");
+                    break;
+                default:
+                    System.out.println("Opcion no valida!!");
+                    break;
+
+            }
+        } while (sortingOption != 5);
     }
 }
