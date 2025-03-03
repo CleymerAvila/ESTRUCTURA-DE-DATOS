@@ -22,7 +22,6 @@ public class Array {
             System.out.println("Vector lleno / Error de desbordamiento");
         }
     }
-
     // insertar al principio
     public void insertAtFirst(int data){
         if (count < size){
@@ -38,7 +37,6 @@ public class Array {
             System.out.println("Vector lleno - desbordamiento");
         }
     }
-
     // insertar en una posicion
     public void insertAtPosition(int data, int position){
         // Validación posicion mayor que tamaño
@@ -67,19 +65,16 @@ public class Array {
             System.out.println("Vector lleno - desbordamiento");
         }
     }
-
     // Insertar antes de una posicion
     public void insertBeforePosition(int data, int position){
         position = position -1;
         insertAtPosition(data, position);
     }
-
     // Insertar después de una posicion
     public void insertAfterPosition(int data, int position){
         position = position + 1;
         insertAtPosition(data, position);
     }
-
     // Eliminar al final
     public  void deleteAtLast(){
         if (count == 0){
@@ -89,7 +84,6 @@ public class Array {
         count--;
         System.out.println("Elemento eliminado en la posicion final");
     }
-
     // Eliminar al principio
     public void deleteAtFirst(){
         if (count == 0){
@@ -104,7 +98,6 @@ public class Array {
             System.out.println("Elemento eliminado al principio del vector");
         }
     }
-
     // Eliminar en una posicion
     public void deleteAtPosition(int position){
         if (position < 0){
@@ -146,7 +139,6 @@ public class Array {
         position++;
         deleteAtPosition(position);
     }
-
     // Ordenamiento Burbuja (intercambio directo)
     public void sortByTrades(boolean byAscOrder){
         // 1. Creamos unas variables para contar los intercambios y para verificar que este ordenado
@@ -207,7 +199,6 @@ public class Array {
 //            }
 //        }
     }
-
     // Ordenamiento por seleccion
     public void sortBySelection(){
         for (int i=0; i < count; i++){
@@ -236,7 +227,6 @@ public class Array {
             A[j + 1] = currentElement;
         }
     }
-
     // Ordenamiento rapido. Metodo quickSort
     public void quickSort(int left, int right){
         int pivot = A[left];
@@ -307,7 +297,12 @@ public class Array {
                     positions.add(i);
                 }
         }
-        System.out.println(duplicatePositions);
+        if (positions.isEmpty()) {
+            System.out.println("No se encontraron valores duplicados");
+        } else {
+            System.out.println(duplicatePositions);
+        }
+    
         return positions;
     }
 

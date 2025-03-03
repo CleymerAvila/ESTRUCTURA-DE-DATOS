@@ -3,202 +3,42 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-
-        /**
-         * Realizar un menu para insertar y eliminar de cada metodo
-         * y la lectura de valores por medio de consolas
-         */
         Scanner sc = new Scanner(System.in);
-        Array array = new Array(10);
+        System.out.println("Elige el tamaño de vector");
+        int size = sc.nextInt();
+        Array array = new Array(size);
         int mainOption;
-        int number;
-        int pos;
         do {
             mainMenu();
             System.out.print("Selecciona una opcion valida: - ");
             mainOption = sc.nextInt();
             switch (mainOption) {
                 case 1:
-                    int insertionOption;
-                    do{
-                        insertionMenu();
-                        System.out.print("Selecciona una opcion: - ");
-                        insertionOption = sc.nextInt();
-                        switch (insertionOption){
-                            case 1:
-                                System.out.print("Digite el numero a insertar: - ");
-                                number = sc.nextInt();
-                                array.insertAtFirst(number);
-                                array.printData();
-                                break;
-                            case 2:
-                                System.out.print("Digite el numero a insertar: ");
-                                number = sc.nextInt();
-                                array.insertAtLast(number);
-                                array.printData();
-                                break;
-                            case 3:
-                                System.out.print("Digite el numero a insertar: ");
-                                number = sc.nextInt();
-                                System.out.print("digite la posicion: ");
-                                pos = sc.nextInt();
-                                array.insertAtPosition(number, pos);
-                                array.printData();
-                                break;
-                            case 4:
-                                System.out.print("Digite el numero a insertar: - ");
-                                number = sc.nextInt();
-                                System.out.print("digite la posicion: - ");
-                                pos = sc.nextInt();
-                                array.insertBeforePosition(number, pos);
-                                array.printData();
-                                break;
-                            case 5:
-                                System.out.print("Digite el numero a insertar: - ");
-                                number = sc.nextInt();
-                                System.out.print("digite la posicion: - ");
-                                pos = sc.nextInt();
-                                array.insertAfterPosition(number, pos);
-                                array.printData();
-                                break;
-                            case 6:
-                                System.out.println("\nRegresando al menu principal");
-                                break;
-                            default:
-                                System.out.println("Opcion no valida!!");
-                                break;
-
-                        }
-                    } while (insertionOption != 6);
+                    insertionMethods(array, sc);
                     break;
                 case 2:
-                    int eliminationOption;
-                    do{
-                        eliminationMenu();
-                        System.out.print("Selecciona una opcion: - ");
-                        eliminationOption = sc.nextInt();
-                        switch (eliminationOption){
-                            case 1:
-                                array.deleteAtFirst();
-                                array.printData();
-                                break;
-                            case 2:
-                                array.deleteAtLast();
-                                array.printData();
-                                break;
-                            case 3:
-                                System.out.print("Digite la posicion a eliminar: - ");
-                                pos = sc.nextInt();
-                                array.deleteAtPosition(pos);
-                                array.printData();
-                                break;
-                            case 4:
-                                System.out.println("Eliminar antes de una posicion");
-                                System.out.print("Ingrese posicion: - ");
-                                pos = sc.nextInt();
-                                array.deleteBefore(pos);
-                                array.printData();
-                                break;
-                            case 5:
-                                System.out.println("Eliminar despues de una posicion");
-                                System.out.println("Ingrese posicion: - ");
-                                pos = sc.nextInt();
-                                array.deleteAfter(pos);
-                                array.printData();
-                                break;
-                            case 6:
-                                System.out.println("Eliminar por dato");
-                                System.out.print("Ingrese dato: - ");
-                                number = sc.nextInt();
-                                array.deleteFromData(number);
-                                array.printData();
-                                break;
-                            case 7:
-                                System.out.println("Eliminacion datos repetidos de un valor");
-                                System.out.print("Ingresa un valor: - ");
-                                number = sc.nextInt();
-                                ArrayList<Integer> positions = array.searchDuplicatesData(number);
-                                array.deleteDuplicateData(positions);
-                                System.out.println(positions);
-                                break;
-                            case 8:
-                                System.out.println("\nRegresando al menu principal");
-                                break;
-                            default:
-                                System.out.println("Opcion no valida!!");
-                                break;
-
-                        }
-                    } while (eliminationOption != 8);
+                    eliminationMethods(array, sc);
                     break;
                 case 3:
-                    int sortingOption;
-                    do{
-                        sortingMenu();
-                        System.out.print("Selecciona una opcion: - ");
-                        sortingOption = sc.nextInt();
-                        switch (sortingOption){
-                            case 1:
-                                array.sortByTrades(true);
-                                array.printData();
-                                break;
-                            case 2:
-                                array.sortBySelection();
-                                array.printData();
-                                break;
-                            case 3:
-                                array.sortByInsertion();
-                                array.printData();
-                                break;
-                            case 4:
-                                array.quickSort(0, array.count-1);
-                                array.printData();
-                                break;
-                            case 5:
-                                System.out.println("\nRegresa al menu principal\n");
-                                break;
-                            default:
-                                System.out.println("Opcion no valida!!");
-                                break;
-
-                        }
-                    } while (sortingOption != 5);
+                    sortingMethods(array, sc);
                     break;
                 case 4:
-                    System.out.println("----- MENU BUSCAR ARRAY -------");
-                    System.out.println("1. Buscar dato dentro del array");
-                    System.out.println("2. Buscar repeticiones datos");
-                    int searchOption = sc.nextInt();
-                    if (searchOption == 1){
-                        System.out.println("Ingresa un valor: - ");
-                        number = sc.nextInt();
-                        pos = array.searchData(number);
-                        if (pos!=-1){
-                            System.out.println("El dato ingresado "+ number + " se encuentra en la posicion "+pos);
-                        } else {
-                            System.out.println("No se encuentra el dato ingresado");
-                        }
-                    } else if (searchOption ==2){
-                        System.out.println("\nBuscar repeticiones posicion de un dato");
-                        System.out.print("Ingrese dato: - ");
-                        number = sc.nextInt();
-                        array.searchDuplicatesData(number);
-                    } else {
-                        System.out.println("Opcion no valida");
-                    }
+                    searchMethods(array, sc);
                     break;
                 case 5:
                     array.printData();
                     break;
                 case 6:
+                    modifyMethods(array, sc);
+                    break;
+                case 7:
                     System.out.println("Gracias por usar la aplicacion. Cerrando... ");
                     break;
                 default:
                     System.out.println("\nOpcion no valida");
                     break;
             }
-        } while (mainOption != 6);
+        } while (mainOption != 7);
 
     }
 
@@ -209,7 +49,8 @@ public class Main {
         System.out.println("3. Ordenacion datos");
         System.out.println("4. Busqueda datos");
         System.out.println("5. Impresión y Recorrido datos");
-        System.out.println("6. Cerrar Aplicacion");
+        System.out.println("6. Modificar datos");
+        System.out.println("7. Cerrar Aplicacion");
         System.out.println("- -- | --- | ---- |--- |  -------|---");
     }
 
@@ -237,7 +78,7 @@ public class Main {
         System.out.println("------------------------------------");
     }
 
-    public static void  sortingMenu(){
+    public static void sortingMenu(){
         System.out.println("\n\n------ MENU ORDENACION DATOS ARRAY -----");
         System.out.println("1. Metodo Burbuja \n(intercambio directo)");
         System.out.println("2. Metodo por seleccion");
@@ -245,6 +86,97 @@ public class Main {
         System.out.println("4. Metodo ordenacion rapida- quicksort");
         System.out.println("5. Regresar a menu principal");
         System.out.println("----------------------------------------");
+    }
+
+    public static void searchMenu(){
+        System.out.println("\n\n----- MENU BUSCAR ARRAY -------");
+        System.out.println("1. Buscar dato dentro del array");
+        System.out.println("2. Buscar repeticiones datos");
+        System.out.println("3. Busqueda binaria");
+        System.out.println("4. Regresar al menu principal");
+        System.out.println("-------------------------------");
+    }
+
+    public static void modifyMenu(){
+        System.out.println("\n\n----- MENU MODIFICAR ARRAY ----");
+        System.out.println("1. Modificar por valor");
+        System.out.println("2. Modificar por posicion");
+        System.out.println(".3 Regresar al menu principal");
+        System.out.println("-------------------------------");
+    }
+
+    public static void modifyMethods(Array array, Scanner sc){
+        int modifyOption;
+        int pos;
+        do {
+            modifyMenu();
+            System.out.print("Selecciona una opcion: - ");
+            modifyOption = sc.nextInt();
+            switch (modifyOption) {
+                case 1:
+                    System.out.print("Ingrese el valor a modificar: ");
+                    int oldValue = sc.nextInt();
+                    System.out.print("Ingrese el nuevo valor: ");
+                    int newValue = sc.nextInt();
+                    array.modifyByValue(oldValue, newValue);
+                    break;
+                case 2:
+                    System.out.print("Ingrese la posición a modificar: ");
+                    pos = sc.nextInt();
+                    System.out.print("Ingrese el nuevo valor: ");
+                    int newValue1 = sc.nextInt();
+                    array.modifyByPosition(pos, newValue1);
+                case 3:
+                    System.out.println("Saliendo al menu principal");
+                default:
+                    System.out.println("Valor ingresado incorrecto.");
+                    break;
+            }
+        } while (modifyOption !=3);
+    }
+
+    public static void searchMethods(Array array, Scanner sc){
+        int searchOption;
+        int number;
+        int pos;
+        do {
+            searchMenu();
+            System.out.print("Selecciona una opcion: - ");
+            searchOption = sc.nextInt();
+            switch (searchOption) {
+                case 1:
+                    System.out.println("Ingresa un valor: - ");
+                    number = sc.nextInt();
+                    pos = array.searchData(number);
+                    if (pos!=-1){
+                        System.out.println("El dato ingresado "+ number + " se encuentra en la posicion "+pos);
+                    } else {
+                        System.out.println("No se encuentra el dato ingresado");
+                    }
+                    break;
+                case 2:
+                    System.out.print("Ingrese el dato que desea: - ");
+                    number = sc.nextInt();
+                    System.out.println("Las posiciones de los "+number+" repetidos son");
+                    array.searchDuplicatesData(number);
+                    break;
+                case 3:
+                    System.out.println("Ingrese el dato que desea buscar");
+                    number = sc.nextInt();
+                    int result = array.binarySearch(number);
+                    if (result != -1) {
+                        System.out.println("Elemento encontrado en la posición: " + result);
+                    } else {
+                    System.out.println("Elemento no encontrado en el arreglo.");
+                    }
+                case 4:
+                    System.out.println("\nRegresando al menu principal");
+                    break;
+                default:
+                    break;
+            }
+            
+        } while (searchOption !=4);
     }
 
     public static void insertionMethods(Array array, Scanner sc){
@@ -348,6 +280,14 @@ public class Main {
                     array.printData();
                     break;
                 case 7:
+                    System.out.println("Eliminacion de datos repetidos");
+                    System.out.println("Ingrese el dato que esta repetido");
+                    number = sc.nextInt();
+                    ArrayList<Integer> positions = array.searchDuplicatesData(number);
+                    array.deleteDuplicateData(positions);
+                    System.out.println(positions);
+                    break;
+                case 8:
                     System.out.println("\nRegresando al menu principal");
                     break;
                 default:
@@ -355,7 +295,7 @@ public class Main {
                     break;
 
             }
-        } while (eliminationOption != 7);
+        } while (eliminationOption != 8);
     }
 
     public static void sortingMethods(Array array, Scanner sc){
@@ -391,4 +331,5 @@ public class Main {
             }
         } while (sortingOption != 5);
     }
+ 
 }
