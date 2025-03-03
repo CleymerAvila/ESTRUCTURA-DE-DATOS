@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Array {
@@ -276,6 +277,62 @@ public class Array {
         return position;
     }
 
+    public int binarySearch(int value) {
+        quickSort(0, count-1); // Assuming this method sorts the vector in ascending order
+        int start = 0, end = size - 1;
+
+        while (start <= end) {
+            int middle = start + (end - start) / 2;
+
+            if (middle == value) {
+                return middle;
+            }
+
+            if (middle < value) {
+                start = middle + 1;
+            } else {
+                end = middle - 1;
+            }
+        }
+
+        return -1; // Value not found
+    }
+
+    public ArrayList<Integer> searchDuplicatesData(int data){
+        StringBuilder duplicatePositions = new StringBuilder("Posicion duplicadas: ");
+        ArrayList<Integer> positions = new ArrayList<>();
+        for(int i = 0; i < count; i++){
+                if (A[i]==data) {
+                    duplicatePositions.append(" - ").append(i);
+                    positions.add(i);
+                }
+        }
+        System.out.println(duplicatePositions);
+        return positions;
+    }
+
+    public void deleteDuplicateData(ArrayList<Integer> positions){
+        for(int i= 1; i<= count-1; i++){
+            deleteAtPosition(positions.get(i));
+        }
+    }
+
+    public void modifyByValue(int oldValue, int newValue) {
+        int position = searchData(oldValue);
+        if (position != -1) {
+            A[position] = newValue;
+        } else {
+            System.out.println("Value not found.");
+        }
+    }
+
+    public void modifyByPosition(int position, int newValue) {
+        if (position >= 0 && position < size) {
+            A[position] = newValue;
+        } else {
+            System.out.println("Invalid position.");
+        }
+    }
 
     public void printData(){
         System.out.println("Impresión Elementos\n\n");
