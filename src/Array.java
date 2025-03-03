@@ -312,7 +312,7 @@ public class Array {
     }
 
     public void deleteDuplicateData(ArrayList<Integer> positions){
-        for(int i= 1; i<= count-1; i++){
+        for(int i= 1; i< positions.size(); i++){
             deleteAtPosition(positions.get(i));
         }
     }
