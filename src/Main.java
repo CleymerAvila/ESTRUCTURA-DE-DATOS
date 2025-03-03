@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -114,6 +115,14 @@ public class Main {
                                 array.printData();
                                 break;
                             case 7:
+                                System.out.println("Eliminacion datos repetidos de un valor");
+                                System.out.print("Ingresa un valor: - ");
+                                number = sc.nextInt();
+                                ArrayList<Integer> positions = array.searchDuplicatesData(number);
+                                array.deleteDuplicateData(positions);
+                                System.out.println(positions);
+                                break;
+                            case 8:
                                 System.out.println("\nRegresando al menu principal");
                                 break;
                             default:
@@ -121,7 +130,7 @@ public class Main {
                                 break;
 
                         }
-                    } while (eliminationOption != 7);
+                    } while (eliminationOption != 8);
                     break;
                 case 3:
                     int sortingOption;
@@ -157,14 +166,26 @@ public class Main {
                     } while (sortingOption != 5);
                     break;
                 case 4:
-                    System.out.println("\nBuscar posicion de un dato");
-                    System.out.println("Ingrese dato: - ");
-                    number = sc.nextInt();
-                    pos = array.searchData(number);
-                    if (pos!=-1){
-                        System.out.println("El dato ingresado "+ number + " se encuentra en la posicion "+pos);
+                    System.out.println("----- MENU BUSCAR ARRAY -------");
+                    System.out.println("1. Buscar dato dentro del array");
+                    System.out.println("2. Buscar repeticiones datos");
+                    int searchOption = sc.nextInt();
+                    if (searchOption == 1){
+                        System.out.println("Ingresa un valor: - ");
+                        number = sc.nextInt();
+                        pos = array.searchData(number);
+                        if (pos!=-1){
+                            System.out.println("El dato ingresado "+ number + " se encuentra en la posicion "+pos);
+                        } else {
+                            System.out.println("No se encuentra el dato ingresado");
+                        }
+                    } else if (searchOption ==2){
+                        System.out.println("\nBuscar repeticiones posicion de un dato");
+                        System.out.print("Ingrese dato: - ");
+                        number = sc.nextInt();
+                        array.searchDuplicatesData(number);
                     } else {
-                        System.out.println("No se encuentra el dato ingresado");
+                        System.out.println("Opcion no valida");
                     }
                     break;
                 case 5:
@@ -211,7 +232,8 @@ public class Main {
         System.out.println("4. Eliminacion Dato antes de posicion");
         System.out.println("5. Eliminacion Dato despues de posicion");
         System.out.println("6. Eliminacion Dato por Valor");
-        System.out.println("7. Regresar a menu principal");
+        System.out.println("7. Eliminacioin Dato repetidos de un valor");
+        System.out.println("8. Regresar a menu principal");
         System.out.println("------------------------------------");
     }
 
