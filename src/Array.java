@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Array {
     int[] A;
     int size;
@@ -9,7 +11,7 @@ public class Array {
         count = 0;
     }
 
-    // insertar al principio
+    // insertar al final
     public void insertAtLast(int data){
         if (count < size){
             A[count]=data;
@@ -20,7 +22,7 @@ public class Array {
         }
     }
 
-    // insertar al final
+    // insertar al principio
     public void insertAtFirst(int data){
         if (count < size){
             if (count > 0){
@@ -44,7 +46,7 @@ public class Array {
             return;
         }
         // Validacion position mayor que cantidad elemento
-        if (position > count){
+        if (position >= count){
             System.out.println("Error no esta permitido el ingreso en esta posicion");
             return;
         }
@@ -53,21 +55,15 @@ public class Array {
             System.out.println("Error la posición no puede ser negativa");
             return;
         }
-        if (position == 0){
-            insertAtFirst(data);
-        } else {
-            if (count < size){
-                if (count > 0){
-                    for (int i=count;  i >= position; i--){
-                        A[i] = A[i - 1];
-                    }
-                    A[position] = data;
-                    count++;
-                    System.out.println("Numero "+ data+ " insertado en la posicion " + position + " con exito!");
-                }
-            } else {
-                System.out.println("Vector lleno - desbordamiento");
+        if (count < size){
+            for (int i = count; i > position; i--) {
+                A[i] = A[i - 1];
             }
+            A[position] = data;
+            count++;
+            System.out.println("Numero "+ data+ " insertado en la posicion " + position + " con exito!");
+        } else {
+            System.out.println("Vector lleno - desbordamiento");
         }
     }
 
@@ -134,7 +130,7 @@ public class Array {
     public void deleteFromData(int data){
         int pos = searchData(data);
         if (pos!=-1){
-            deleteAtPosition(data);
+            deleteAtPosition(pos);
         } else {
             System.out.println("El dato no existe dentro del vector");
         }
@@ -150,6 +146,7 @@ public class Array {
         deleteAtPosition(position);
     }
 
+    // Ordenamiento Burbuja (intercambio directo)
     public void sortByTrades(boolean byAscOrder){
         // 1. Creamos unas variables para contar los intercambios y para verificar que este ordenado
         int trades = 0;
@@ -197,6 +194,7 @@ public class Array {
                 trades = 0;
             }
         }
+//       Ordenamiento por intercambio directo con for
 //        for(int i=0; i < count - 1; i++){
 //            for (int currentElement=0; j < (count -1); currentElement++){
 //                int followingElement = currentElement + 1;
@@ -209,18 +207,58 @@ public class Array {
 //        }
     }
 
-    public void sortBySelection(boolean byAscOrder){
-        int tempVariable;
-        int theShorter = 0;
-        for (int i=0; i < (count - 1); i++){
-            for (int j=0; j < (count - 1); j++){
-                if (A[j]<A[j+1]){
-                    tempVariable = A[]
-                    theShorter = A[j];
+    // Ordenamiento por seleccion
+    public void sortBySelection(){
+        for (int i=0; i < count; i++){
+            int theShorter = i;
+            for (int j= i + 1; j < count; j++){
+                if (A[theShorter]>A[j]){
+                    theShorter = j;
                 }
             }
-            A[i]=theShorter;
+            // Intercambio
+            int tempVariable = A[i];
+            A[i] = A[theShorter];
+            A[theShorter] = tempVariable;
+            System.out.println(Arrays.toString(A));
         }
+    }
+    // Ordenamiento por Inserción
+    public void sortByInsertion(){
+        for(int i = 1; i < count; i++){
+            int currentElement = A[i];
+            int j = i - 1;
+            while (j >= 0 && A[j] > currentElement ){
+                A[j + 1] = A[j];
+                j--;
+            }
+            A[j + 1] = currentElement;
+        }
+    }
+
+    // Ordenamiento rapido. Metodo quickSort
+    public void quickSort(int left, int right){
+        int pivot = A[left];
+        int i = left;
+        int j = right;
+        int auxiliary;
+
+        while(i < j){
+            while (A[i] <= pivot && i < j) i++;
+            while (A[j] > pivot) j--;
+            if (i < j){
+                auxiliary = A[i];
+                A[i] = A[j];
+                A[j] = auxiliary;
+            }
+        }
+        A[left] = A[j];
+        A[j] = pivot;
+        System.out.println(Arrays.toString(A));
+        if (left < j-1)
+            quickSort(left, j-1);
+        if (j+1 < right)
+            quickSort(j+1, right);
     }
 
     public int searchData(int data){
