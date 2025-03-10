@@ -139,64 +139,19 @@ public class Array {
         deleteAtPosition(position);
     }
     // Ordenamiento Burbuja (intercambio directo)
-    public void sortByTrades(boolean byAscOrder){
-        // 1. Creamos unas variables para contar los intercambios y para verificar que este ordenado
-        int trades = 0;
-        boolean sorter=false;
-        if (byAscOrder){
-            // Ordenar datos de menor a mayor
-            while (!sorter){
-                for (int currentElement = 0; currentElement < (count-1); currentElement++){
-                    int followingElement = currentElement + 1;
-                    if (A[currentElement] > A[followingElement]){
-                        //  Realizamos un intercambio
-                        int temporalVariable = A[currentElement];
-                        A[currentElement] = A[followingElement];
-                        A[followingElement] = temporalVariable;
-                        // Aumentamos la cantidad de intercambios
-                        trades++;
-                    }
-                }
+    public void sortByTrades(){
 
-                if (trades == 0){
-                    sorter = true;
+       //  Ordenamiento por intercambio directo con for
+        for(int i=0; i < count - 1; i++){
+            for (int currentElement=0; currentElement < (count -1); currentElement++){
+                int followingElement = currentElement + 1;
+                if (A[currentElement]>A[followingElement]){
+                    int temporalVariable = A[currentElement];
+                    A[currentElement]=A[followingElement];
+                    A[followingElement]=temporalVariable;
                 }
-
-                trades = 0;
-            }
-        } else {
-            // Ordenar de mayor a menor
-            while (!sorter){
-                for (int currentElement = 0; currentElement < (count-1); currentElement++){
-                    int followingElement = currentElement + 1;
-                    if (A[currentElement] < A[followingElement]){
-                        //  Realizamos un intercambio
-                        int temporalVariable = A[currentElement];
-                        A[currentElement] = A[followingElement];
-                        A[followingElement] = temporalVariable;
-                        // Aumentamos la cantidad de intercambios
-                        trades++;
-                    }
-                }
-
-                if (trades == 0){
-                    sorter = true;
-                }
-
-                trades = 0;
             }
         }
-//       Ordenamiento por intercambio directo con for
-//        for(int i=0; i < count - 1; i++){
-//            for (int currentElement=0; j < (count -1); currentElement++){
-//                int followingElement = currentElement + 1;
-//                if (A[currentElement]>A[followingElement]){
-//                    temporalVariable = A[currentElement];
-//                    A[currentElement]=A[followingElement];
-//                    A[followingElement]=temporalVariable;
-//                }
-//            }
-//        }
     }
     // Ordenamiento por seleccion
     public void sortBySelection(){

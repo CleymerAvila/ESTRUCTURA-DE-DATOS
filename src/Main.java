@@ -322,7 +322,7 @@ public class Main {
             sortingOption = sc.nextInt();
             switch (sortingOption){
                 case 1:
-                    array.sortByTrades(true);
+                    array.sortByTrades();
                     array.printData();
                     break;
                 case 2:
