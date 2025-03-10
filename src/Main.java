@@ -166,8 +166,15 @@ public class Main {
                 case 2:
                     System.out.print("Ingrese el dato que desea: - ");
                     number = sc.nextInt();
-                    System.out.println("Las posiciones de los "+number+" repetidos son");
-                    array.searchDuplicatesData(number);
+                    System.out.println("Las posiciones de los "+number+" repetidos son: ");
+                    int[] positions= array.searchDuplicatesData(number);
+                    if (positions.length > 0){
+                        for (int position : positions){
+                            System.out.print(" "+ position);
+                        }
+                    } else {
+                        System.out.println("No se encontraron datos repetidos");
+                    }
                     break;
                 case 3:
                     System.out.println("Ingrese el dato que desea buscar");
@@ -176,7 +183,7 @@ public class Main {
                     if (result != -1) {
                         System.out.println("Elemento encontrado en la posición: " + result);
                     } else {
-                    System.out.println("Elemento no encontrado en el arreglo.");
+                        System.out.println("Elemento no encontrado en el arreglo.");
                     }
                     break;
                 case 4:
@@ -293,9 +300,8 @@ public class Main {
                     System.out.println("Eliminacion de datos repetidos");
                     System.out.println("Ingrese el dato que esta repetido");
                     number = sc.nextInt();
-                    ArrayList<Integer> positions = array.searchDuplicatesData(number);
+                    int[] positions = array.searchDuplicatesData(number);
                     array.deleteDuplicateData(positions);
-                    System.out.println(positions);
                     break;
                 case 8:
                     System.out.println("\nRegresando al menu principal");

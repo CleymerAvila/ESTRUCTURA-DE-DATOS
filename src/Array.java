@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Array {
@@ -254,14 +253,10 @@ public class Array {
 
     public int searchData(int data){
         int position = -1;
-        if (count == size){
-            System.out.println("Vector lleno");
-        } else {
-            for(int i=0; i < count; i++){
-                if (A[i]==data){
-                    position=i;
-                    break;
-                }
+        for(int i=0; i < count; i++){
+            if (A[i]==data){
+                position=i;
+                break;
             }
         }
         return position;
@@ -272,13 +267,11 @@ public class Array {
         int start = 0, end = size - 1;
 
         while (start <= end) {
-            int middle = start + (end - start) / 2;
+            int middle = (start + end) / 2;
 
-            if (middle == value) {
+            if (A[middle] == value){
                 return middle;
-            }
-
-            if (middle < value) {
+            } else if (A[middle] < value){
                 start = middle + 1;
             } else {
                 end = middle - 1;
@@ -288,27 +281,33 @@ public class Array {
         return -1; // Value not found
     }
 
-    public ArrayList<Integer> searchDuplicatesData(int data){
-        StringBuilder duplicatePositions = new StringBuilder("Posicion duplicadas: ");
-        ArrayList<Integer> positions = new ArrayList<>();
+    public int[] searchDuplicatesData(int data){
+        StringBuilder duplicatePositions = new StringBuilder();
+        int numberOfRepetitions = 0;
         for(int i = 0; i < count; i++){
                 if (A[i]==data) {
-                    duplicatePositions.append(" - ").append(i);
-                    positions.add(i);
+                    numberOfRepetitions++;
+                    if (numberOfRepetitions > 1){
+                        duplicatePositions.append(i).append("-");
+                    }
                 }
         }
-        if (positions.size() == 1) {
-            System.out.println("No se encontraron valores duplicados");
-        } else {
-            System.out.println(duplicatePositions);
+
+        int[] duplicatePos = new int[0];
+        if (numberOfRepetitions > 1) {
+            String[] duplicatePosString  = duplicatePositions.toString().split("-");
+            duplicatePos = new int[--numberOfRepetitions];
+            for (int i=0; i<duplicatePosString.length; i++){
+                duplicatePos[i] = Integer.parseInt(duplicatePosString[i]);
+            }
         }
     
-        return positions;
+        return duplicatePos;
     }
 
-    public void deleteDuplicateData(ArrayList<Integer> positions){
-        for(int i= 1; i< positions.size(); i++){
-            deleteAtPosition(positions.get(i));
+    public void deleteDuplicateData(int[] positions){
+        for (int position : positions) {
+            deleteAtPosition(position);
         }
     }
 
