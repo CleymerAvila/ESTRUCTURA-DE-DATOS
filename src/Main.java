@@ -3,12 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        /*
-            Taller numero 1: ESTRUCTURA DE DATOS.
-            INTEGRANTES:
-            1. Cleymer Avila Pushaina.
-            2. Breiner Montes
-        * */
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Elige el tamaño de vector");
         int size = sc.nextInt();
