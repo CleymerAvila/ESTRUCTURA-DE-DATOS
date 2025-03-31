@@ -91,6 +91,65 @@ public class List {
         }
     }
 
+    public void deleteByReference(String data){
+        if (this.firstNode==null){
+            System.out.println("Lista vacía");
+        } else {
+           // Ojo con las validaciones faltantes
+            // 1. Cuando el nodo referencia es el primero
+            // 2. Cuando el nodo referencia es el ultimo
+            // 3. Cuando el nodo referencia es null (no existe)
+            Node reference = this.searchData(data);
+            if (reference != null){
+                if (reference == firstNode){
+                    deleteAtFirst();
+                } else if (reference == lastNode){
+                    deleteAtLast();
+                } else {
+                    Node frog = this.firstNode;
+                    while (frog.getNext() != lastNode){
+                        frog = frog.getNext();
+                    }
+                    frog.setNext(reference.getNext());
+                    reference  = null;
+                }
+            } else {
+                System.out.println("No existe el dato referenciado");
+            }
+        }
+    }
+
+    public void deleteBeforeReference(String data){
+        if (this.firstNode==null){
+            System.out.println("Lista vacía");
+        } else {
+            // Ojo con las validaciones faltantes
+            // 1. Cuando el nodo referencia es el primero
+            // 2. Cuando el nodo referencia es el ultimo
+            // 3. Cuando el nodo referencia es null (no existe)
+            Node reference = this.searchData(data);
+            if (reference != null){
+                if (reference == firstNode){
+                    deleteAtFirst();
+                } else if (reference == lastNode){
+                    deleteAtLast();
+                } else {
+                    Node frog = this.firstNode;
+                    Node frog2 = this.firstNode;
+                    while (frog2.getNext() != reference){
+                        frog = frog2;
+                        frog2 = frog2.getNext();
+                    }
+                    frog.setNext(reference);
+                    frog2  = null;
+                }
+            } else {
+                System.out.println("No existe el dato referenciado");
+            }
+        }
+    }
+
+
     public Node searchData(String data){
         Node frog = this.firstNode;
 
