@@ -56,6 +56,41 @@ public class List {
         }
     }
 
+
+    public void deleteAtFirst(){
+        if (this.firstNode==null){
+            System.out.println("Lista vacía");
+        } else {
+            if (this.firstNode.getNext()==null){
+                this.firstNode =null;
+                this.lastNode = null;
+            } else {
+                Node aux = this.firstNode;
+
+                this.firstNode = this.firstNode.getNext();
+                aux = null;
+            }
+        }
+    }
+
+    public void deleteAtLast(){
+        if (this.firstNode==null){
+            System.out.println("Lista vacía");
+        } else {
+            if (this.firstNode.getNext()==null){
+                this.firstNode =null;
+                this.lastNode = null;
+            } else {
+                Node frog = this.firstNode;
+                while (frog.getNext() != lastNode){
+                    frog = frog.getNext();
+                }
+                frog.setNext(null);
+                this.lastNode = frog;
+            }
+        }
+    }
+
     public Node searchData(String data){
         Node frog = this.firstNode;
 

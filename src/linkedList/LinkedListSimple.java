@@ -12,5 +12,16 @@ public class LinkedListSimple {
         list.insertAfter(new Node("pequi"), "kuki");
 
         list.goOverData();
+
+        list.deleteAtFirst();
+        System.out.println("\nSe elimino primero: ");
+        list.goOverData();
+
+        System.out.println("\nSe elimino ultimo: ");
+        list.deleteAtLast();
+        list.goOverData();
+        System.out.println("\nSe elimino ultimo: ");
+        list.deleteAtLast();
+        list.goOverData();
     }
 }
