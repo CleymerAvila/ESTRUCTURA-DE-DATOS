@@ -101,23 +101,22 @@ public class Array {
     public void deleteAtPosition(int position){
         if (position < 0){
             System.out.println("No es posible eliminar en la posicion especificada");
+            return;
         }
-        if (position > count){
+        if (position >= count){
             System.out.println("No existe la posicion indicada");
             return;
         }
         if (position > size){
             System.out.println("La posición indicada excede el tamaño del vector");
+            return;
         }
-        if (position == 0){
-            deleteAtFirst();
-        } else {
-            for (int i=position; i < count -1; i++){
-                A[i] = A[i + 1];
-            }
-            count--;
-            System.out.println("Elemento eliminado en la posicion: " + position);
+
+        for (int i=position; i < count-1; i++){
+            A[i] = A[i + 1];
         }
+        count--;
+        System.out.println("Elemento eliminado en la posicion: " + position);
     }
 
     public void deleteFromData(int data){
