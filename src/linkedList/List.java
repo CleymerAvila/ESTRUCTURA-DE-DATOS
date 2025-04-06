@@ -46,15 +46,15 @@ public class List {
     }
 
     public void insertAfter(Node newNode, String data){
-        Node frog = searchData(data);
-        if (frog==null) {
+        Node reference = searchData(data);
+        if (reference==null) {
             System.out.println("El dato no fue encontrado en la lista.");
         } else {
-            if (frog.getNext()==null){
+            if (reference.getNext()==null){
                 lastNode = newNode;
             }
-            newNode.setNext(frog.getNext());
-            frog.setNext(newNode);
+            newNode.setNext(reference.getNext());
+            reference.setNext(newNode);
         }
     }
 
@@ -63,6 +63,7 @@ public class List {
         if (reference != null){
             if (reference==firstNode){
                 insertAtFirst(newNode);
+                return;
             }
             Node frog = firstNode;
             while (frog.getNext() != reference){
@@ -77,7 +78,7 @@ public class List {
 
     public void insertAtPosition(Node newNode, int position){
         if (position<0){
-            System.out.println("No es posible eliminar en esta posicion");
+            System.out.println("No es posible ingresar en esta posicion");
             return;
         }
         if (position==0){
@@ -93,11 +94,13 @@ public class List {
             frog2 = frog2.getNext();
             count++;
         }
-//        // frog.setNext(frog2.getNext());
-//        System.out.println("debuggin sapo: "+frog.getData());
-//        System.out.println("debuggin sapo 2: "+frog2.getData());
-        frog.setNext(newNode);
-        newNode.setNext(frog2);
+        System.out.println("count: "+ count);
+        if (count!=position){
+            System.out.println("\nNo es posible insertar en la posicion indicada");
+        } else {
+            frog.setNext(newNode);
+            newNode.setNext(frog2);
+        }
     }
 
     public void deleteByPosition(int position){
@@ -114,7 +117,11 @@ public class List {
             frog2 = frog2.getNext();
             count++;
         }
-        frog.setNext(frog2.getNext());
+        if (frog2==null){
+            System.out.println("La posicion indicada no existe");
+        } else {
+            frog.setNext(frog2.getNext());
+        }
     }
     public void deleteAtFirst(){
         if (this.firstNode==null){
@@ -221,10 +228,6 @@ public class List {
                 if (reference == lastNode){
                     System.out.println("\nNo es posible la operacion ya que no se puede eliminar datos despues del ultimo Nodo.");
                 } else {
-//                    Node frog = this.firstNode;
-//                    while (frog.getNext() != reference.getNext()){
-//                        frog = frog.getNext();
-//                    }
                     reference.setNext(reference.getNext().getNext());
                 }
             } else {
