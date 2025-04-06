@@ -1,37 +1,214 @@
 package linkedList;
 
+import java.util.Scanner;
+
 public class LinkedListSimple {
-    
+
+    public static Scanner scanner = new Scanner(System.in);
+    public static List list;
 
     public static void main(String[] args) {
-        List list = new List();
-        list.insertAtFirst(new Node("chepa"));
-        list.insertAtFirst(new Node("kuki"));
-        list.insertAtFirst(new Node("toto"));
-        list.insertAtLast(new Node("pepas"));
-        list.insertAfter(new Node("pequi"), "kuki");
-        list.insertAfter(new Node("Lol"), "pepas");
-        list.insertAtLast(new Node("Kakaroto"));
+        list = new List();
+        int option;
+        do {
+            mainMenu();
+            System.out.print("Selecciona una opcion valida: ");
+            option = scanner.nextInt();
+            scanner.nextLine();
+            switch (option){
+                case 1:
+                    insertionsMethods(list, scanner);
+                    break;
+                case 2:
+                    deleteMethods(list, scanner);
+                    break;
+                case 3:
+                    searchMethod(list, scanner);
+                    break;
+                case 5:
+                    list.rollData();
+                    break;
+                case 6:
+                    System.out.println("\nSaliendo del programa!!");
+                    break;
+            }
+        } while (option != 6);
+    }
 
-        list.goOverData();
+    public static void mainMenu(){
+        System.out.println("\n--- Listas Enlazadas Menu Principal ---");
+        System.out.println("1. Insercion");
+        System.out.println("2. Eliminacion");
+        System.out.println("3. Busquedad");
+        System.out.println("4. Ordenacion");
+        System.out.println("5. Recorrido datos");
+        System.out.println("6. Salir de programa");
+        System.out.println("-----------------------------------------");
+    }
+    public static void insertionMenu(){
+        System.out.println("\n\n----- Menu de Inserción -----");
+        System.out.println("1. Inserción al principio");
+        System.out.println("2. Inserción al final.");
+        System.out.println("3. Inserción despues");
+        System.out.println("4. Inserción antes");
+        System.out.println("5. Inserción en posicion");
+        System.out.println("6. Regresar a menu principal");
+        System.out.println("---------------------------------");
+    }
 
-//        list.deleteAtFirst();
-//        System.out.println("\nSe elimino primero: ");
-//        list.goOverData();
-//
-//        System.out.println("\nSe elimino ultimo: ");
-//        list.deleteAtLast();
-//        list.goOverData();
-//        System.out.println("\nSe elimino ultimo: ");
-//        list.deleteAtLast();
-//        list.goOverData();
-//
-//        System.out.println("\nEliminando por referencia: kuki");
-//        list.deleteByReference("kuki");
-//        list.goOverData();
+    public static void deleteMenu(){
+        System.out.println("\n----- Menu de Eliminacion -----");
+        System.out.println("1. Eliminacion al principio");
+        System.out.println("2. Eliminacion al final.");
+        System.out.println("3. Eliminación despues");
+        System.out.println("4. Eliminacion antes");
+        System.out.println("5. Eliminacion en posicion");
+        System.out.println("6. Eliminacion por referencia");
+        System.out.println("7. Eliminacion antes de referencia");
+        System.out.println("8. Eliminacion despues de referencia");
+        System.out.println("9. Regresar a menu principal");
+        System.out.println("---------------------------------");
+    }
 
-        System.out.println("\nEliminar antes de : pequi ");
-        list.deleteBeforeReference("pepas");
-        list.goOverData();
+    public static void insertionsMethods(List list, Scanner sc){
+        int option;
+        String data;
+        String referenceData;
+        int pos;
+        list.rollData();
+        do {
+            insertionMenu();
+            System.out.print("\nIngresa una opcion valida: - ");
+            option = sc.nextInt();
+            sc.nextLine();
+            switch (option){
+                case 1:
+                    System.out.print("\nDigite el dato a ingresar: - ");
+                    data = sc.nextLine();
+                    list.insertAtFirst(new Node(data));
+                    list.rollData();
+                    break;
+                case 2:
+                    System.out.print("\nDigite el dato a ingresar: - ");
+                    data = sc.nextLine();
+                    list.insertAtLast(new Node(data));
+                    list.rollData();
+                    break;
+                case 3:
+                    System.out.print("\nDigite el dato a referenciar (despues de): - ");
+                    referenceData = sc.nextLine();
+                    System.out.print("\nDigite el dato a ingresar: - ");
+                    data = sc.nextLine();
+                    list.insertAfter(new Node(data), referenceData);
+                    list.rollData();
+                    break;
+                case 4:
+                    System.out.print("\nDigite el dato a referenciar (antes de): - ");
+                    referenceData = sc.nextLine();
+                    System.out.print("\nDigite el dato a ingresar: - ");
+                    data = sc.nextLine();
+                    list.insertBefore(new Node(data), referenceData);
+                    list.rollData();
+                    break;
+                case 5:
+                    System.out.print("\nDigite la posicion: - ");
+                    pos = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("\nDigite el dato a ingresar: - ");
+                    data = sc.nextLine();
+                    list.insertAtPosition(new Node(data), pos);
+                    list.rollData();
+                    break;
+                case 6:
+                    System.out.println("\nRegresando al menu principal!!");
+                    break;
+                default:
+                    System.out.println("\nOpcion no valida!!");
+                    break;
+            }
+        } while (option != 6);
+    }
+
+    public static void deleteMethods(List list, Scanner sc){
+        int option;
+        String referenceData;
+        int pos;
+        list.rollData();
+        do {
+            deleteMenu();
+            System.out.print("\nIngresa una opcion valida: - ");
+            option = sc.nextInt();
+            sc.nextLine();
+            switch (option){
+                case 1:
+                    list.deleteAtFirst();
+                    list.rollData();
+                    break;
+                case 2:
+                    list.deleteAtLast();
+                    list.rollData();
+                    break;
+                case 3:
+                    System.out.print("\nDigite el dato a referenciar (despues de): - ");
+                    referenceData = sc.nextLine();
+                    list.deleteAfterReference(referenceData);
+                    list.rollData();
+                    break;
+                case 4:
+                    System.out.print("\nDigite el dato a referenciar (antes de): - ");
+                    referenceData = sc.nextLine();
+                    list.deleteBeforeReference(referenceData);
+                    list.rollData();
+                    break;
+                case 5:
+                    System.out.print("\nDigite la posicion a eliminar: - ");
+                    pos = sc.nextInt();
+                    sc.nextLine();
+                    list.deleteByPosition(pos);
+                    list.rollData();
+                    break;
+                case 6:
+                    System.out.print("\nDigite el dato a eliminar: - ");
+                    referenceData = sc.nextLine();
+                    sc.nextLine();
+                    list.deleteByReference(referenceData);
+                    list.rollData();
+                    break;
+                case 7:
+                    System.out.print("\nDigite la referencia (antes de) a eliminar: - ");
+                    referenceData = sc.nextLine();
+                    sc.nextLine();
+                    list.deleteBeforeReference(referenceData);
+                    list.rollData();
+                    break;
+                case 8:
+                    System.out.print("\nDigite la referencia (despues de) a eliminar: - ");
+                    referenceData = sc.nextLine();
+                    sc.nextLine();
+                    list.deleteAfterReference(referenceData);
+                    list.rollData();
+                    break;
+                case 9:
+                    System.out.println("\nRegresando al menu principal!!");
+                    break;
+                default:
+                    System.out.println("\nOpcion no valida!!");
+                    break;
+            }
+        } while (option != 9);
+    }
+
+    public static void searchMethod(List list, Scanner scanner){
+        list.rollData();
+        System.out.print("\nDigite el dato a buscar: - ");
+        String data = scanner.nextLine();
+        Node searchedNode = list.searchData(data);
+        if (searchedNode==null){
+            System.out.println("\nEl dato no existe");
+        } else {
+            System.out.println("\nDato encontrado: ");
+            System.out.println("Dato: "+ searchedNode.getData());
+            System.out.println("Siguiente Nodo: "+ searchedNode.getNext().getData());
+        }
     }
 }
