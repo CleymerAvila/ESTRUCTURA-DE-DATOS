@@ -6,9 +6,9 @@ public class DoubleLinkedList {
         List list = new List();
         list.insertAtFirst(new Node("Lucas"));
         list.insertAtFirst(new Node("Lucho"));
-        list.rollData();
+        list.traverseList();
         System.out.println();
-        list.rollbackData();
+        list.traverseListBackwards();
     }
 
 }

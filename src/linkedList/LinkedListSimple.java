@@ -26,7 +26,7 @@ public class LinkedListSimple {
                     searchMethod(list, scanner);
                     break;
                 case 5:
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 6:
                     System.out.println("\nSaliendo del programa!!");
@@ -75,7 +75,7 @@ public class LinkedListSimple {
         String data;
         String referenceData;
         int pos;
-        list.rollData();
+        list.traverseList();
         do {
             insertionMenu();
             System.out.print("\nIngresa una opcion valida: - ");
@@ -86,13 +86,13 @@ public class LinkedListSimple {
                     System.out.print("\nDigite el dato a ingresar: - ");
                     data = sc.nextLine();
                     list.insertAtFirst(new Node(data));
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 2:
                     System.out.print("\nDigite el dato a ingresar: - ");
                     data = sc.nextLine();
                     list.insertAtLast(new Node(data));
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 3:
                     System.out.print("\nDigite el dato a referenciar (despues de): - ");
@@ -100,7 +100,7 @@ public class LinkedListSimple {
                     System.out.print("\nDigite el dato a ingresar: - ");
                     data = sc.nextLine();
                     list.insertAfter(new Node(data), referenceData);
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 4:
                     System.out.print("\nDigite el dato a referenciar (antes de): - ");
@@ -108,7 +108,7 @@ public class LinkedListSimple {
                     System.out.print("\nDigite el dato a ingresar: - ");
                     data = sc.nextLine();
                     list.insertBefore(new Node(data), referenceData);
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 5:
                     System.out.print("\nDigite la posicion: - ");
@@ -117,7 +117,7 @@ public class LinkedListSimple {
                     System.out.print("\nDigite el dato a ingresar: - ");
                     data = sc.nextLine();
                     list.insertAtPosition(new Node(data), pos);
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 6:
                     System.out.println("\nRegresando al menu principal!!");
@@ -133,7 +133,7 @@ public class LinkedListSimple {
         int option;
         String referenceData;
         int pos;
-        list.rollData();
+        list.traverseList();
         do {
             deleteMenu();
             System.out.print("\nIngresa una opcion valida: - ");
@@ -142,51 +142,51 @@ public class LinkedListSimple {
             switch (option){
                 case 1:
                     list.deleteAtFirst();
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 2:
                     list.deleteAtLast();
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 3:
                     System.out.print("\nDigite el dato a referenciar (despues de): - ");
                     referenceData = sc.nextLine();
                     list.deleteAfterReference(referenceData);
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 4:
                     System.out.print("\nDigite el dato a referenciar (antes de): - ");
                     referenceData = sc.nextLine();
                     list.deleteBeforeReference(referenceData);
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 5:
                     System.out.print("\nDigite la posicion a eliminar: - ");
                     pos = sc.nextInt();
                     sc.nextLine();
                     list.deleteByPosition(pos);
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 6:
                     System.out.print("\nDigite el dato a eliminar: - ");
                     referenceData = sc.nextLine();
                     sc.nextLine();
                     list.deleteByReference(referenceData);
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 7:
                     System.out.print("\nDigite la referencia (antes de) a eliminar: - ");
                     referenceData = sc.nextLine();
                     sc.nextLine();
                     list.deleteBeforeReference(referenceData);
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 8:
                     System.out.print("\nDigite la referencia (despues de) a eliminar: - ");
                     referenceData = sc.nextLine();
                     sc.nextLine();
                     list.deleteAfterReference(referenceData);
-                    list.rollData();
+                    list.traverseList();
                     break;
                 case 9:
                     System.out.println("\nRegresando al menu principal!!");
@@ -199,7 +199,7 @@ public class LinkedListSimple {
     }
 
     public static void searchMethod(List list, Scanner scanner){
-        list.rollData();
+        list.traverseList();
         System.out.print("\nDigite el dato a buscar: - ");
         String data = scanner.nextLine();
         Node searchedNode = list.searchData(data);

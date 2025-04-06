@@ -244,7 +244,7 @@ public class List {
         return frog;
     }
 
-    public void rollData(){
+    public void traverseList(){
         Node frog = this.firstNode;
         int count = 0;
         System.out.println();

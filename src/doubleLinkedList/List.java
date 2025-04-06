@@ -1,7 +1,5 @@
 package doubleLinkedList;
 
-
-
 public class List {
 
     private Node firstNode;
@@ -166,7 +164,7 @@ public class List {
         return frog;
     }
 
-    public void rollData(){
+    public void traverseList(){
         Node frog = this.firstNode;
 
         while(frog!=null){
@@ -175,7 +173,7 @@ public class List {
         }
     }
 
-    public void rollbackData(){
+    public void traverseListBackwards(){
         Node frog = this.lastNode;
 
         while(frog!=null){
