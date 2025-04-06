@@ -64,9 +64,7 @@ public class LinkedListSimple {
         System.out.println("4. Eliminacion antes");
         System.out.println("5. Eliminacion en posicion");
         System.out.println("6. Eliminacion por referencia");
-        System.out.println("7. Eliminacion antes de referencia");
-        System.out.println("8. Eliminacion despues de referencia");
-        System.out.println("9. Regresar a menu principal");
+        System.out.println("7. Regresar a menu principal");
         System.out.println("---------------------------------");
     }
 
@@ -175,27 +173,13 @@ public class LinkedListSimple {
                     list.traverseList();
                     break;
                 case 7:
-                    System.out.print("\nDigite la referencia (antes de) a eliminar: - ");
-                    referenceData = sc.nextLine();
-                    sc.nextLine();
-                    list.deleteBeforeReference(referenceData);
-                    list.traverseList();
-                    break;
-                case 8:
-                    System.out.print("\nDigite la referencia (despues de) a eliminar: - ");
-                    referenceData = sc.nextLine();
-                    sc.nextLine();
-                    list.deleteAfterReference(referenceData);
-                    list.traverseList();
-                    break;
-                case 9:
                     System.out.println("\nRegresando al menu principal!!");
                     break;
                 default:
                     System.out.println("\nOpcion no valida!!");
                     break;
             }
-        } while (option != 9);
+        } while (option != 7);
     }
 
     public static void searchMethod(List list, Scanner scanner){
