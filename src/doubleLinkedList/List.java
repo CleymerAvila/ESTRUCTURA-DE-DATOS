@@ -125,7 +125,9 @@ public class List {
                 System.out.println("\nNo es posible eliminar la posicion indicada ya que no existe");
             } else {
                 frog.getPrevious().setNext(frog.getNext());
-                frog.getNext().setPrevious(frog.getPrevious());
+                if (frog.getNext()!=null) {
+                    frog.getNext().setPrevious(frog.getPrevious());
+                }
             }
         }
     }
@@ -207,8 +209,12 @@ public class List {
                 if (reference == firstNode){
                     System.out.println("\nNo es posible la operacion. Ya que la referencia es el primer dato de la lista.");
                 } else {
-                    reference.getPrevious().getPrevious().setNext(reference);
-                    reference.setPrevious(reference.getPrevious().getPrevious());
+                    if (reference.getPrevious()==firstNode){
+                        deleteAtFirst();
+                    } else {
+                        reference.getPrevious().getPrevious().setNext(reference);
+                        reference.setPrevious(reference.getPrevious().getPrevious());
+                    }
                 }
             } else {
                 System.out.println("No existe el dato referenciado");
@@ -229,8 +235,12 @@ public class List {
                 if (reference == lastNode){
                     System.out.println("\nNo es posible la operacion. Ya que la referencia es el ultimo dato de la lista.");
                 } else {
-                    reference.setNext(reference.getNext().getNext());
-                    reference.getNext().setPrevious(reference);
+                    if (reference.getNext()==lastNode){
+                        deleteAtLast();
+                    } else {
+                        reference.setNext(reference.getNext().getNext());
+                        reference.getNext().setPrevious(reference);
+                    }
                 }
             } else {
                 System.out.println("No existe el dato referenciado");
