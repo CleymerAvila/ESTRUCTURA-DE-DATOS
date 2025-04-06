@@ -83,23 +83,21 @@ public class List {
         }
         if (position==0){
             insertAtFirst(newNode);
-            return;
-        }
-
-        Node frog = this.firstNode;
-        Node frog2 = this.firstNode;
-        int count = 0;
-        while (count < position && frog.getNext()!=null){
-            frog = frog2;
-            frog2 = frog2.getNext();
-            count++;
-        }
-        System.out.println("count: "+ count);
-        if (count!=position){
-            System.out.println("\nNo es posible insertar en la posicion indicada");
         } else {
-            frog.setNext(newNode);
-            newNode.setNext(frog2);
+            Node frog = this.firstNode;
+            Node frog2 = this.firstNode;
+            int pos = 0;
+            while (pos < position && frog2.getNext()!=null){
+                frog = frog2;
+                frog2 = frog2.getNext();
+                pos++;
+            }
+            if (pos!=position){
+                System.out.println("\nNo es posible insertar en la posicion indicada");
+            } else {
+                frog.setNext(newNode);
+                newNode.setNext(frog2);
+            }
         }
     }
 
@@ -109,18 +107,22 @@ public class List {
             return;
         }
 
-        Node frog = this.firstNode;
-        Node frog2 = this.firstNode;
-        int count = 0;
-        while (count < position && frog.getNext()!=null){
-            frog = frog2;
-            frog2 = frog2.getNext();
-            count++;
-        }
-        if (frog2==null){
-            System.out.println("La posicion indicada no existe");
+        if (position==0){
+            deleteAtFirst();
         } else {
-            frog.setNext(frog2.getNext());
+            Node frog = this.firstNode;
+            Node frog2 = this.firstNode;
+            int pos = 0;
+            while (pos < position && frog.getNext()!=null){
+                frog = frog2;
+                frog2 = frog2.getNext();
+                pos++;
+            }
+            if (frog2==null){
+                System.out.println("La posicion indicada no existe");
+            } else {
+                frog.setNext(frog2.getNext());
+            }
         }
     }
     public void deleteAtFirst(){
@@ -249,10 +251,10 @@ public class List {
 
     public void traverseList(){
         Node frog = this.firstNode;
-        int count = 0;
+        int pos = 0;
         System.out.println();
         while(frog!=null){
-            System.out.print("[["+count++ +"]"+ frog.getData() + "]->");
+            System.out.print("[["+pos++ +"]"+ frog.getData() + "]->");
             frog = frog.getNext();
         }
         System.out.println();
