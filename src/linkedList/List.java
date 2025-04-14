@@ -238,6 +238,109 @@ public class List {
         }
     }
 
+    public void bubbleSort(){
+        if (firstNode == null || firstNode.getNext() == null) return;
+        boolean changed;
+        do {
+            changed = false;
+            Node currentNode = firstNode;
+            while (currentNode.getNext()!=null){
+                if (currentNode.getData().compareTo(currentNode.getNext().getData()) > 0){
+                    String temp = currentNode.getData();
+                    currentNode.setData(currentNode.getNext().getData());
+                    currentNode.getNext().setData(temp);
+                    changed = true;
+                }
+                currentNode = currentNode.getNext();
+            }
+        } while (changed);
+    }
+
+    public void insertionSort(){
+        Node orderedNode = null;
+        Node currentNode = firstNode;
+
+        while (currentNode != null){
+            Node nextNode = currentNode.getNext();
+            orderedNode = insertOrdered(orderedNode, currentNode);
+            currentNode = nextNode;
+        }
+        firstNode = orderedNode;
+        updateLastNode();
+    }
+
+    private Node insertOrdered(Node orderedNode, Node newNode){
+        if (orderedNode == null || newNode.getData().compareTo(orderedNode.getData())<0){
+            newNode.setNext(orderedNode);
+            return newNode;
+        }
+        Node currentNode = orderedNode;
+        while (currentNode.getNext() != null &&
+               currentNode.getNext().getData().compareTo(newNode.getData())<0){
+            currentNode = currentNode.getNext();
+        }
+        newNode.setNext(currentNode.getNext());
+        currentNode.setNext(newNode);
+        return orderedNode;
+    }
+
+    public void mergeSort(){
+        firstNode = mergeSortRect(firstNode);
+        updateLastNode();
+    }
+
+    private Node mergeSortRect(Node start){
+        if (start == null || start.getNext()== null) return start;
+
+        Node middle = getMiddle(start);
+        Node middleNext = middle.getNext();
+        middle.setNext(null);
+
+        Node left = mergeSortRect(start);
+        Node right = mergeSortRect(middleNext);
+
+        return merge(left, right);
+    }
+
+    private Node getMiddle(Node start){
+        if (start == null ) return null;
+
+        Node slow = start;
+        Node fast = start.getNext();
+
+        while (fast != null && fast.getNext() != null){
+            slow = slow.getNext();
+            fast = fast.getNext().getNext();
+        }
+        return slow;
+    }
+
+    private Node merge(Node l1, Node l2){
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+
+        Node result;
+        if (l1.getData().compareTo(l2.getData()) < 0 ){
+            result = l1;
+            result.setNext(merge(l1.getNext(), l2));
+        } else {
+            result =  l2;
+            result.setNext(merge(l1, l2.getNext()));
+        }
+        return result;
+    }
+
+    private void updateLastNode(){
+        if (firstNode == null){
+            lastNode = null;
+            return;
+        }
+        Node current = firstNode;
+        while (current.getNext() != null){
+            current = current.getNext();
+        }
+        lastNode = current;
+    }
     public Node searchData(String data){
         Node frog = this.firstNode;
         while(frog!=null){
