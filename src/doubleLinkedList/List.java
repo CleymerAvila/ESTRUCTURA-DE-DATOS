@@ -248,6 +248,103 @@ public class List {
         }
     }
 
+    public void insertionSort(){
+        if(firstNode == null || firstNode.getNext() == null) return;
+
+        Node currentNode = firstNode.getNext();
+        while (currentNode != null){
+            Node temp = currentNode;
+            Node move = currentNode.getPrevious();
+
+            // Guarda el siguiente nodo antes de que se pierda
+            currentNode = currentNode.getNext();
+
+            // Desconectar el nodo temporal para moverlo
+            move.setNext(temp.getNext());
+
+            if (temp.getNext() != null){
+                temp.getNext().setPrevious(move);
+            }
+
+            // Buscar la posicion correcta para atrás
+            Node pos = move;
+            while (pos!=null && temp.getData().compareTo(pos.getData()) < 0){
+                pos = pos.getPrevious();
+            }
+
+            // Insertar al inicio
+            if (pos==null){
+                temp.setNext(firstNode);
+                firstNode.setPrevious(temp);
+                temp.setPrevious(null);
+                firstNode = temp;
+            } else {
+                temp.setNext(pos.getNext());
+                if (pos.getNext()!= null){
+                    pos.getNext().setPrevious(temp);
+                }
+                pos.setNext(temp);
+                temp.setPrevious(pos);
+            }
+            updateLastNode();
+        }
+    }
+
+    public void mergeSort(){
+        firstNode = mergeSortReact(firstNode);
+        updateLastNode();
+    }
+    private Node mergeSortReact(Node start){
+        if (start==null || start.getNext()== null) return start;
+
+        Node middle = getMiddle(start);
+        Node nextMiddle = middle.getNext();
+        middle.setNext(null);
+        if (nextMiddle != null) nextMiddle.setPrevious(null);
+
+        Node left = mergeSortReact(start);
+        Node right = mergeSortReact(nextMiddle);
+        return merge(left, right);
+    }
+
+    private Node getMiddle(Node node){
+        Node slow = node;
+        Node fast = node;
+
+        while (fast.getNext() != null && fast.getNext().getNext() != null){
+            slow = slow.getNext();
+            fast = fast.getNext().getNext();
+        }
+        return slow;
+    }
+    private Node merge(Node l1, Node l2){
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+
+        if (l1.getData().compareTo(l2.getData())<0){
+            l1.setNext(merge(l1.getNext(), l2));
+            if (l1.getNext() != null) l1.getNext().setPrevious(l1);
+            l1.setPrevious(null);
+            return l1;
+        } else {
+            l2.setNext(merge(l1, l2.getNext()));
+            if (l2.getNext() != null) l2.getNext().setPrevious(l2);
+            l2.setPrevious(null);
+            return l2;
+        }
+    }
+
+    private void updateLastNode(){
+        if (firstNode == null){
+            lastNode = null;
+            return;
+        }
+        Node current = firstNode;
+        while (current.getNext()!=null){
+            current = current.getNext();
+        }
+        lastNode = lastNode;
+    }
 
     public Node searchData(String data){
         Node frog = this.firstNode;
