@@ -26,6 +26,9 @@ public class DoubleLinkedList {
                 case 3:
                     searchMethod(list, scanner);
                     break;
+                case 4:
+                    sortingMethods(list, scanner);
+                    break;
                 case 5:
                     dataTravel(list, scanner);
                     break;
@@ -67,6 +70,14 @@ public class DoubleLinkedList {
         System.out.println("6. Eliminacion por referencia");
         System.out.println("7. Regresar a menu principal");
         System.out.println("---------------------------------");
+    }
+
+    public static void sortingMenu(){
+        System.out.println("\n\n----- Menu de Ordenamiento ---  ");
+        System.out.println("1. Ordenamiento Insercion");
+        System.out.println("2. Ordenamiento mergeSort");
+        System.out.println("3. Regresar al menu principal");
+        System.out.println("-----------------------------------");
     }
 
     public static void insertionsMethods(List list, Scanner sc){
@@ -181,6 +192,32 @@ public class DoubleLinkedList {
                     break;
             }
         } while (option != 7);
+    }
+
+    public static void sortingMethods(List list, Scanner sc){
+        int option;
+        list.traverseList();
+        do {
+            sortingMenu();
+            System.out.print("\nIngresa una opcion valida: -");
+            option = sc.nextInt();
+            switch (option){
+                case 1:
+                    list.insertionSort();
+                    list.traverseList();
+                    break;
+                case 2:
+                    list.mergeSort();
+                    list.traverseList();
+                    break;
+                case 3:
+                    System.out.println("\nRegresando al menu principal");
+                    break;
+                default:
+                    System.out.println("\nOpción no valida!");
+                    break;
+            }
+        } while (option!=3);
     }
 
     public static void searchMethod(List list, Scanner scanner){
