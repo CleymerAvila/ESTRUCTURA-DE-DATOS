@@ -25,11 +25,17 @@ public class LinkedListSimple {
                 case 3:
                     searchMethod(list, scanner);
                     break;
+                case 4:
+                    sortingMethods(list, scanner);
+                    break;
                 case 5:
                     list.traverseList();
                     break;
                 case 6:
                     System.out.println("\nSaliendo del programa!!");
+                    break;
+                default:
+                    System.out.println("Opcion no valida!");
                     break;
             }
         } while (option != 6);
@@ -66,6 +72,15 @@ public class LinkedListSimple {
         System.out.println("6. Eliminacion por referencia");
         System.out.println("7. Regresar a menu principal");
         System.out.println("---------------------------------");
+    }
+
+    public static void sortingMenu(){
+        System.out.println("\n\n----- Menu de Ordenamiento ---  ");
+        System.out.println("1. Ordenamiento Burbuja (intercambio)");
+        System.out.println("2. Ordenamiento Insercion");
+        System.out.println("3. Ordenamiento mergeSort");
+        System.out.println("4. Regresar al menu principal");
+        System.out.println("-----------------------------------");
     }
 
     public static void insertionsMethods(List list, Scanner sc){
@@ -180,6 +195,36 @@ public class LinkedListSimple {
                     break;
             }
         } while (option != 7);
+    }
+
+    public static void sortingMethods(List list, Scanner sc){
+        int option;
+        list.traverseList();
+        do {
+            sortingMenu();
+            System.out.print("\nIngresa una opcion valida: -");
+            option = sc.nextInt();
+            switch (option){
+                case 1:
+                    list.bubbleSort();
+                    list.traverseList();
+                    break;
+                case 2:
+                    list.insertionSort();
+                    list.traverseList();
+                    break;
+                case 3:
+                    list.mergeSort();
+                    list.traverseList();
+                    break;
+                case 4:
+                    System.out.println("\nRegresando al menu principal");
+                    break;
+                default:
+                    System.out.println("\nOpcion no valida!");
+                    break;
+            }
+        } while (option!=4);
     }
 
     public static void searchMethod(List list, Scanner scanner){
