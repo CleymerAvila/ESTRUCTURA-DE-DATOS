@@ -73,6 +73,10 @@ public class Stack {
             count++;
         }
 
+        if (count != pos || pos > count){
+            System.out.println("Posicion No encontrada!");
+            return;
+        }
         if (current==top){
             pop();
             return;

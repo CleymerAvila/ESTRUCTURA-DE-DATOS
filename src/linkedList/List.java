@@ -92,8 +92,9 @@ public class List {
                 frog2 = frog2.getNext();
                 pos++;
             }
-            if (pos!=position){
+            if (pos!=position || position > pos){
                 System.out.println("\nNo es posible insertar en la posicion indicada");
+                return;
             } else {
                 frog.setNext(newNode);
                 newNode.setNext(frog2);
@@ -117,6 +118,10 @@ public class List {
                 frog = frog2;
                 frog2 = frog2.getNext();
                 pos++;
+            }
+            if (pos!=position || position > pos){
+                System.out.println("No es posible eliminar en la posicion indicada");
+                return;
             }
             if (frog2==null){
                 System.out.println("La posicion indicada no existe");

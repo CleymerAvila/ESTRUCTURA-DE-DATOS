@@ -95,7 +95,7 @@ public class Queue {
             count++;
             current = current.getNext();
         }
-        if (count!=pos){
+        if (count!=pos  || pos > count){
             System.out.println("posicion no encontrada!");
             return;
         }
@@ -154,7 +154,7 @@ public class Queue {
             count++;
             current = current.getNext();
         }
-        if (count!=pos){
+        if (count!=pos || pos>count){
             System.out.println("posicion no encontrada!");
             return;
         }
