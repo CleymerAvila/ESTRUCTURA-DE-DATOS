@@ -254,20 +254,20 @@ public class List {
         Node currentNode = firstNode.getNext();
         while (currentNode != null){
             Node temp = currentNode;
-            Node move = currentNode.getPrevious();
+            Node nodeToMove = currentNode.getPrevious();
 
             // Guarda el siguiente nodo antes de que se pierda
             currentNode = currentNode.getNext();
 
             // Desconectar el nodo temporal para moverlo
-            move.setNext(temp.getNext());
+            nodeToMove.setNext(temp.getNext());
 
             if (temp.getNext() != null){
-                temp.getNext().setPrevious(move);
+                temp.getNext().setPrevious(nodeToMove);
             }
 
             // Buscar la posicion correcta para atrás
-            Node pos = move;
+            Node pos = nodeToMove;
             while (pos!=null && temp.getData().compareTo(pos.getData()) < 0){
                 pos = pos.getPrevious();
             }
@@ -286,8 +286,8 @@ public class List {
                 pos.setNext(temp);
                 temp.setPrevious(pos);
             }
-            updateLastNode();
         }
+        updateLastNode();
     }
 
     public void mergeSort(){
@@ -343,7 +343,7 @@ public class List {
         while (current.getNext()!=null){
             current = current.getNext();
         }
-        lastNode = lastNode;
+        lastNode = current;
     }
 
     public Node searchData(String data){
