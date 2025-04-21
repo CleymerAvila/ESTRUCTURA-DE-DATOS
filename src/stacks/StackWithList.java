@@ -7,6 +7,11 @@ public class StackWithList {
         Stack stack = new Stack();
         Scanner scanner = new Scanner(System.in);
 
+        /*
+        Cleymer Avila Pushaina
+        Breiner Montes Petro
+        Juan Torres Torres
+        * */
         int option;
         do {
             mainMenu();
