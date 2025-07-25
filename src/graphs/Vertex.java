@@ -33,6 +33,6 @@ public class Vertex {
 
     @Override
     public String toString() {
-        return "[ "+ label + " ]  --> \n |"  ;
+        return "[ "+ label + " ], "  ;
     }
 }

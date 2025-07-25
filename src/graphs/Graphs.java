@@ -29,7 +29,11 @@ public class Graphs {
         graph.showVertexes();
         graph.showEdges();
         graph.showGraph();
-
-
+        graph.hasVertex("G");
+        graph.hasEdge("A", "C");
+        System.out.println("Vertices vecinos de B: " + graph.getNeighbours("B"));
+        graph.dfs("H");
+        graph.bfs("H");
+        graph.printDijkstra("A");
     }
 }
